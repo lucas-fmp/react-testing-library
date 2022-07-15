@@ -4,8 +4,8 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from '../helpers/renderWithRouter';
 
-describe('1º - Componente App', () => {
-  it('Contém um conjunto fixo de links de navegação', () => {
+describe('1º - App Component', () => {
+  it('contains a fixed set of navigation links', () => {
     renderWithRouter(<App />);
     const homeLink = screen.getByRole('link', { name: /Home/i });
     const aboutLink = screen.getByRole('link', { name: /About/i });
@@ -15,7 +15,7 @@ describe('1º - Componente App', () => {
     expect(favoriteLink).toBeInTheDocument();
   });
 
-  it('Redireciona para a pagina principal ao clicar no link Home', () => {
+  it('redirect to the Home page after click on the Home page link', () => {
     const { history } = renderWithRouter(<App />);
     const homeLink = screen.getByRole('link', { name: /Home/i });
     userEvent.click(homeLink);
@@ -23,7 +23,7 @@ describe('1º - Componente App', () => {
     expect(pathname).toBe('/');
   });
 
-  it('Redireciona para a pagina de About ao clicar no link About', () => {
+  it('redirect to the About page after click on the About page link', () => {
     const { history } = renderWithRouter(<App />);
     const aboutLink = screen.getByRole('link', { name: /About/i });
     userEvent.click(aboutLink);
@@ -31,7 +31,7 @@ describe('1º - Componente App', () => {
     expect(pathname).toBe('/about');
   });
 
-  it('Redireciona para a pag. de Pokemons Favoritos ao clicar no link Favorite Pokemons',
+  it('redirect to the fav. pokemons page after click on the favorite pokemons page link',
     () => {
       const { history } = renderWithRouter(<App />);
       const favoriteLink = screen.getByRole('link', { name: /Favorite Pokémons/i });
@@ -40,7 +40,7 @@ describe('1º - Componente App', () => {
       expect(pathname).toBe('/favorites');
     });
 
-  it('Redireciona para a pagina Not found ao entrar em uma URL desconhecida', () => {
+  it('redirect to the "not found" page when entering an unknown URL', () => {
     const { history } = renderWithRouter(<App />);
     history.push('xablau');
     const notFound = screen.getByRole('heading', { name: /not found/i });
